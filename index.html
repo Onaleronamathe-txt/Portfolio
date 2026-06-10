@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Onalerona Mathe | Full Stack Developer</title>
+<meta name="description" content="Onalerona Mathe — Full Stack Developer specialising in Java, Spring Boot, React & MongoDB. Building scalable backend systems and clean web interfaces." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg:       #0a0e14;
+    --bg2:      #0f1520;
+    --bg3:      #141d2b;
+    --surface:  #1a2436;
+    --border:   #1e2d42;
+    --accent:   #00d4aa;
+    --accent2:  #4f9eff;
+    --accent3:  #f7931a;
+    --text:     #e8eaf0;
+    --muted:    #6b7a94;
+    --dim:      #3a4a62;
+    --green:    #00d4aa;
+    --red:      #ff5f6b;
+    --yellow:   #ffd85e;
+    --mono:     'JetBrains Mono', monospace;
+    --sans:     'Inter', sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--dim); border-radius: 2px; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2.5rem;
+    height: 56px;
+    background: rgba(10,14,20,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta {
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 6px 18px;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+  .nav-cta:hover { background: var(--accent); color: var(--bg); }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  h2 {
+    font-family: var(--mono);
+    font-size: clamp(22px, 3vw, 28px);
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 2.5rem;
+  }
+  h2 .hash { color: var(--muted); margin-right: 6px; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 56px;
+    max-width: 100%;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+  .hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 4rem;
+    align-items: center;
+  }
+  .hero-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 6px 14px;
+    margin-bottom: 1.5rem;
+  }
+  .status-dot {
+    width: 7px; height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+  .hero-greeting {
+    font-family: var(--mono);
+    font-size: 15px;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+  .hero-name {
+    font-family: var(--mono);
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+  .hero-title {
+    font-family: var(--mono);
+    font-size: clamp(18px, 3vw, 26px);
+    font-weight: 300;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+  .hero-title span { color: var(--accent2); }
+  .hero-desc {
+    font-size: 15px;
+    color: var(--muted);
+    max-width: 500px;
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 10px 24px;
+    background: var(--accent);
+    color: var(--bg);
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.2s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-outline {
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 10px 24px;
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 4px;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ── TERMINAL CARD ── */
+  .terminal-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .terminal-header {
+    background: var(--bg3);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .dot { width: 11px; height: 11px; border-radius: 50%; }
+  .dot-r { background: var(--red); }
+  .dot-y { background: var(--yellow); }
+  .dot-g { background: var(--green); }
+  .terminal-filename {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    margin-left: 8px;
+  }
+  .terminal-body {
+    padding: 1.5rem;
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 2;
+  }
+  .t-prompt { color: var(--accent); }
+  .t-cmd { color: var(--text); }
+  .t-string { color: var(--yellow); }
+  .t-key { color: var(--accent2); }
+  .t-val { color: var(--accent); }
+  .t-comment { color: var(--dim); }
+  .t-brace { color: var(--muted); }
+  .t-cursor {
+    display: inline-block;
+    width: 8px; height: 14px;
+    background: var(--accent);
+    animation: blink 1s step-end infinite;
+    vertical-align: -2px;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+  /* ── STATS ROW ── */
+  .stats-row {
+    display: flex;
+    gap: 2rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+  }
+  .stat { text-align: left; }
+  .stat-num {
+    font-family: var(--mono);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  .about-text p {
+    font-size: 15px;
+    color: var(--muted);
+    margin-bottom: 1rem;
+    line-height: 1.8;
+  }
+  .about-text strong { color: var(--text); font-weight: 500; }
+  .info-table { width: 100%; border-collapse: collapse; }
+  .info-table td {
+    padding: 8px 0;
+    font-family: var(--mono);
+    font-size: 13px;
+    border-bottom: 1px solid var(--border);
+  }
+  .info-table td:first-child { color: var(--muted); width: 40%; }
+  .info-table td:last-child { color: var(--accent); }
+
+  /* ── SKILLS ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+  .skill-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .skill-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .skill-card-title {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .skill-icon { font-size: 16px; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 3px 10px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    color: var(--muted);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .tag:hover { border-color: var(--accent); color: var(--accent); }
+  .tag.accent { border-color: var(--accent); color: var(--accent); }
+
+  /* ── PROJECTS ── */
+  .project-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    transition: border-color 0.2s;
+  }
+  .project-card:hover { border-color: var(--accent2); }
+  .project-header {
+    padding: 1.5rem 1.5rem 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .project-name {
+    font-family: var(--mono);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.25rem;
+  }
+  .project-subtitle {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+  }
+  .project-badges { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
+  .badge {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+  .badge.live { border-color: var(--accent); color: var(--accent); background: rgba(0,212,170,0.08); }
+  .project-desc {
+    font-size: 14px;
+    color: var(--muted);
+    padding: 1rem 1.5rem;
+    line-height: 1.7;
+  }
+  .project-tech { padding: 0 1.5rem 1rem; display: flex; gap: 6px; flex-wrap: wrap; }
+
+  /* ── SANDBOX ── */
+  #sandbox { max-width: 100%; padding: 4rem 0; }
+  .sandbox-inner { max-width: 1100px; margin: 0 auto; padding: 0 2.5rem; }
+  .sandbox-header { margin-bottom: 2.5rem; }
+  .sandbox-tabs {
+    display: flex;
+    gap: 0;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px 8px 0 0;
+    overflow: hidden;
+  }
+  .sandbox-tab {
+    flex: 1;
+    padding: 12px 20px;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--muted);
+    background: none;
+    border: none;
+    border-right: 1px solid var(--border);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .sandbox-tab:last-child { border-right: none; }
+  .sandbox-tab.active { background: var(--surface); color: var(--accent); }
+  .sandbox-tab:hover:not(.active) { background: var(--bg3); color: var(--text); }
+  .sandbox-pane {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    padding: 2rem;
+    min-height: 480px;
+    display: none;
+  }
+  .sandbox-pane.active { display: block; }
+
+  /* ── DEMO: Study Hub ── */
+  .demo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .demo-panel {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.25rem;
+  }
+  .demo-panel-title {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .q-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  .q-item:hover { border-color: var(--accent2); }
+  .q-item.selected { border-color: var(--accent); }
+  .q-title { font-size: 13px; color: var(--text); margin-bottom: 4px; }
+  .q-meta { font-family: var(--mono); font-size: 11px; color: var(--muted); display: flex; gap: 12px; }
+  .vote-btn {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 12px;
+    padding: 3px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .vote-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .vote-btn.voted { border-color: var(--accent); color: var(--accent); background: rgba(0,212,170,0.08); }
+
+  .demo-form { display: flex; flex-direction: column; gap: 10px; }
+  .demo-input {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 8px 12px;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+  .demo-input:focus { border-color: var(--accent2); }
+  .demo-input::placeholder { color: var(--dim); }
+  .demo-select {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 8px 12px;
+    outline: none;
+    width: 100%;
+    cursor: pointer;
+  }
+  .demo-submit {
+    background: var(--accent);
+    color: var(--bg);
+    border: none;
+    border-radius: 4px;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .demo-submit:hover { opacity: 0.85; }
+  .answer-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .answer-text { font-size: 13px; color: var(--muted); line-height: 1.6; flex: 1; }
+  .accepted-badge {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 2px 8px;
+    background: rgba(0,212,170,0.12);
+    border: 1px solid var(--accent);
+    border-radius: 3px;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  /* ── DEMO: API Tester ── */
+  .api-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 1rem;
+    align-items: center;
+  }
+  .method-pill {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    min-width: 70px;
+    text-align: center;
+    background: rgba(79,158,255,0.15);
+    color: var(--accent2);
+    border: 1px solid rgba(79,158,255,0.3);
+  }
+  .method-pill.post { background: rgba(0,212,170,0.15); color: var(--accent); border-color: rgba(0,212,170,0.3); }
+  .method-pill.delete { background: rgba(255,95,107,0.15); color: var(--red); border-color: rgba(255,95,107,0.3); }
+  .api-path {
+    flex: 1;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 7px 12px;
+    outline: none;
+  }
+  .send-btn {
+    background: var(--accent2);
+    color: var(--bg);
+    border: none;
+    border-radius: 4px;
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 7px 18px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    font-weight: 500;
+  }
+  .send-btn:hover { opacity: 0.85; }
+  .response-box {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.8;
+    min-height: 140px;
+    color: var(--muted);
+    overflow-y: auto;
+    max-height: 240px;
+  }
+  .res-status { font-size: 12px; font-weight: 600; margin-bottom: 0.5rem; }
+  .res-200 { color: var(--accent); }
+  .res-201 { color: var(--accent); }
+  .res-400 { color: var(--red); }
+  .res-404 { color: var(--yellow); }
+
+  /* ── DEMO: Grade Calculator ── */
+  .grade-row {
+    display: grid;
+    grid-template-columns: 1fr 100px 80px 40px;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .grade-row.header {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 4px;
+  }
+  .del-btn {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    border-radius: 4px;
+    font-size: 14px;
+    padding: 4px 8px;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .del-btn:hover { border-color: var(--red); color: var(--red); }
+  .add-row-btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    background: none;
+    border: 1px dashed var(--dim);
+    border-radius: 4px;
+    padding: 6px 14px;
+    cursor: pointer;
+    width: 100%;
+    transition: border-color 0.2s;
+    margin-top: 4px;
+  }
+  .add-row-btn:hover { border-color: var(--accent); }
+  .gpa-display {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem 1.5rem;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .gpa-num {
+    font-family: var(--mono);
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .gpa-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 2px;
+  }
+  .grade-letter {
+    font-family: var(--mono);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--accent2);
+    text-align: right;
+  }
+
+  /* ── CONTACT ── */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  .contact-info p {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 2rem;
+    line-height: 1.8;
+  }
+  .social-links { display: flex; flex-direction: column; gap: 10px; }
+  .social-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 10px 14px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .social-link:hover { border-color: var(--accent); color: var(--accent); }
+  .social-link svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .contact-form { display: flex; flex-direction: column; gap: 12px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .form-input, .form-textarea {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 10px 14px;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+  .form-input:focus, .form-textarea:focus { border-color: var(--accent2); }
+  .form-input::placeholder, .form-textarea::placeholder { color: var(--dim); }
+  .form-textarea { resize: vertical; min-height: 100px; }
+  .form-submit {
+    background: var(--accent);
+    color: var(--bg);
+    border: none;
+    border-radius: 6px;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 12px 24px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    align-self: flex-start;
+  }
+  .form-submit:hover { opacity: 0.85; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 2.5rem;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--dim);
+  }
+  footer span { color: var(--accent); }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    nav { padding: 0 1.25rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.25rem; }
+    .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .terminal-card { display: none; }
+    .about-grid { grid-template-columns: 1fr; }
+    .demo-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .grade-row { grid-template-columns: 1fr 80px 70px 36px; }
+  }
+
+  /* ── SCAN LINE ANIMATION ── */
+  .hero-inner::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    animation: scan 6s linear infinite;
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 0;
+  }
+  @keyframes scan {
+    0% { top: 56px; } 100% { top: 100vh; }
+  }
+
+  .toast {
+    position: fixed;
+    bottom: 2rem; right: 2rem;
+    background: var(--surface);
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    padding: 10px 18px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s;
+    z-index: 999;
+    pointer-events: none;
+  }
+  .toast.show { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">~/onalerona.dev</a>
+  <ul class="nav-links">
+    <li><a href="#about">about</a></li>
+    <li><a href="#skills">skills</a></li>
+    <li><a href="#projects">projects</a></li>
+    <li><a href="#sandbox">sandbox</a></li>
+    <li><a href="#contact">contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">hire_me()</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-status">
+        <span class="status-dot"></span>
+        AVAILABLE_FOR_HIRE :: Full Stack Developer
+      </div>
+      <p class="hero-greeting">// Hello, World</p>
+      <h1 class="hero-name">Onalerona<br/>Mathe</h1>
+      <p class="hero-title">Full Stack <span>Developer</span></p>
+      <p class="hero-desc">
+        Building scalable backend systems with <strong style="color:var(--text)">Java & Spring Boot</strong>,
+        clean React frontends, and production-ready APIs.
+        Currently shipping <strong style="color:var(--accent)">Study Hub</strong> — a full-stack student Q&amp;A platform.
+      </p>
+      <div class="hero-btns">
+        <a href="#sandbox" class="btn-primary">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+          View Live Demos
+        </a>
+        <a href="#projects" class="btn-outline">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/onalerona-mathe-403004323" target="_blank" class="btn-outline">
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+      </div>
+      <div class="stats-row">
+        <div class="stat">
+          <div class="stat-num">1</div>
+          <div class="stat-label">Major Project</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">5+</div>
+          <div class="stat-label">Technologies</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">∞</div>
+          <div class="stat-label">Coffee</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TERMINAL CARD -->
+    <div class="terminal-card">
+      <div class="terminal-header">
+        <span class="dot dot-r"></span>
+        <span class="dot dot-y"></span>
+        <span class="dot dot-g"></span>
+        <span class="terminal-filename">developer_profile.java</span>
+      </div>
+      <div class="terminal-body">
+        <div><span class="t-comment">// Onalerona Mathe</span></div>
+        <div><span class="t-comment">// Full Stack Developer</span></div>
+        <br/>
+        <div><span class="t-key">public class</span> <span class="t-val">Developer</span> <span class="t-brace">{</span></div>
+        <br/>
+        <div>&nbsp;&nbsp;<span class="t-key">String</span> name = <span class="t-string">"Onalerona Mathe"</span>;</div>
+        <div>&nbsp;&nbsp;<span class="t-key">String</span> role = <span class="t-string">"Full Stack Dev"</span>;</div>
+        <div>&nbsp;&nbsp;<span class="t-key">String</span> location = <span class="t-string">"South Africa"</span>;</div>
+        <div>&nbsp;&nbsp;<span class="t-key">boolean</span> openToWork = <span class="t-val">true</span>;</div>
+        <br/>
+        <div>&nbsp;&nbsp;<span class="t-key">String[]</span> stack = <span class="t-brace">{</span></div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-string">"Java"</span>, <span class="t-string">"Spring Boot"</span>,</div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-string">"React"</span>, <span class="t-string">"MongoDB"</span>,</div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-string">"Docker"</span>, <span class="t-string">"REST APIs"</span></div>
+        <div>&nbsp;&nbsp;<span class="t-brace">}</span>;</div>
+        <br/>
+        <div><span class="t-brace">}</span></div>
+        <br/>
+        <div><span class="t-prompt">$</span> <span class="t-cmd">./run.sh</span> <span class="t-comment">→ READY</span> <span class="t-cursor"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label">// 01 — about.md</p>
+  <h2><span class="hash">#</span>About Me</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        I'm <strong>Onalerona Mathe</strong>, a Full Stack Developer based in South Africa,
+        currently completing my studies and building production-ready software that solves
+        real problems.
+      </p>
+      <p>
+        My backend of choice is <strong>Java + Spring Boot</strong> — I love how it forces
+        clean architecture and makes building scalable REST APIs feel natural. On the frontend
+        I use <strong>React</strong> to build fast, responsive interfaces that connect to those APIs.
+      </p>
+      <p>
+        Right now I'm putting it all together in <strong>Study Hub</strong> — a full-stack
+        student Q&amp;A and grade tracking platform built with Spring Boot, MongoDB and React,
+        containerised with Docker. It's the kind of project that shows what I can actually ship.
+      </p>
+      <p>
+        I'm actively looking for my first professional role where I can contribute to a real
+        team, keep learning fast, and write code that matters.
+      </p>
+    </div>
+    <div>
+      <div class="terminal-card">
+        <div class="terminal-header">
+          <span class="dot dot-r"></span>
+          <span class="dot dot-y"></span>
+          <span class="dot dot-g"></span>
+          <span class="terminal-filename">whoami.log</span>
+        </div>
+        <div class="terminal-body">
+          <table class="info-table">
+            <tr><td>NAME</td><td>Onalerona Mathe</td></tr>
+            <tr><td>ROLE</td><td>Full Stack Developer</td></tr>
+            <tr><td>LOCATION</td><td>South Africa</td></tr>
+            <tr><td>FOCUS</td><td>Java / Spring Boot</td></tr>
+            <tr><td>STATUS</td><td style="color:var(--accent)">▶ OPEN_TO_HIRE</td></tr>
+            <tr><td>LINKEDIN</td><td><a href="https://www.linkedin.com/in/onalerona-mathe-403004323" target="_blank" style="color:var(--accent2);text-decoration:none">onalerona-mathe</a></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label">// 02 — skills.json</p>
+  <h2><span class="hash">#</span>Technical Skills</h2>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-card-title">
+        <span class="skill-icon">☕</span> Backend
+      </div>
+      <div class="skill-tags">
+        <span class="tag accent">Java</span>
+        <span class="tag accent">Spring Boot</span>
+        <span class="tag">Spring MVC</span>
+        <span class="tag">REST APIs</span>
+        <span class="tag">Maven</span>
+        <span class="tag">JUnit</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">
+        <span class="skill-icon">⚛️</span> Frontend
+      </div>
+      <div class="skill-tags">
+        <span class="tag accent">React</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">HTML5</span>
+        <span class="tag">CSS3</span>
+        <span class="tag">Axios</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">
+        <span class="skill-icon">🗄️</span> Data &amp; Storage
+      </div>
+      <div class="skill-tags">
+        <span class="tag accent">MongoDB</span>
+        <span class="tag">SQL</span>
+        <span class="tag">Spring Data</span>
+        <span class="tag">Redis</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">
+        <span class="skill-icon">🐳</span> DevOps &amp; Tooling
+      </div>
+      <div class="skill-tags">
+        <span class="tag accent">Docker</span>
+        <span class="tag">Docker Compose</span>
+        <span class="tag">Git</span>
+        <span class="tag">GitHub</span>
+        <span class="tag">VS Code</span>
+        <span class="tag">IntelliJ</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-label">// 03 — git log --stat</p>
+  <h2><span class="hash">#</span>Projects</h2>
+
+  <div class="project-card">
+    <div class="project-header">
+      <div>
+        <div class="project-name">Study Hub</div>
+        <div class="project-subtitle">Full Stack Web Application</div>
+        <div class="project-badges">
+          <span class="badge live">● LIVE DEMO BELOW</span>
+          <span class="badge">Public</span>
+          <span class="badge">In Progress</span>
+        </div>
+      </div>
+    </div>
+    <p class="project-desc">
+      A full-stack student Q&amp;A and academic management platform. Students can post questions, 
+      vote on answers, track grades with GPA calculation, and manage personal study notes — all 
+      in one place. Built with a Java Spring Boot REST API backend, MongoDB database, React frontend, 
+      and containerised with Docker Compose for production deployment.
+      <br/><br/>
+      <strong style="color:var(--text)">Key engineering highlights:</strong> RESTful API design with 10+ endpoints,
+      JWT authentication, MongoDB document modelling with Spring Data, React component architecture,
+      full Docker Compose deployment — the kind of system design you'd build on a real team.
+    </p>
+    <div class="project-tech">
+      <span class="tag accent">Java 17</span>
+      <span class="tag accent">Spring Boot</span>
+      <span class="tag">React</span>
+      <span class="tag">MongoDB</span>
+      <span class="tag">Docker</span>
+      <span class="tag">REST API</span>
+      <span class="tag">Maven</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SANDBOX -->
+<div id="sandbox">
+  <div class="sandbox-inner">
+    <div class="sandbox-header">
+      <p class="section-label">// 04 — interactive demos</p>
+      <h2 style="margin-bottom:0.5rem"><span class="hash">#</span>Live Project Sandbox</h2>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:1.5rem">
+        Try my projects directly in the browser. These demos simulate the real Study Hub interface
+        and show how the backend API would respond — no install needed.
+      </p>
+    </div>
+    <div class="sandbox-tabs">
+      <button class="sandbox-tab active" onclick="switchTab('studyhub')">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        Study Hub Q&amp;A
+      </button>
+      <button class="sandbox-tab" onclick="switchTab('api')">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        API Explorer
+      </button>
+      <button class="sandbox-tab" onclick="switchTab('grades')">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Grade Calculator
+      </button>
+    </div>
+
+    <!-- TAB: Study Hub Q&A -->
+    <div id="pane-studyhub" class="sandbox-pane active">
+      <div class="demo-grid">
+        <div>
+          <div class="demo-panel">
+            <div class="demo-panel-title">
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              Questions Feed
+            </div>
+            <div id="questions-list"></div>
+          </div>
+        </div>
+        <div>
+          <div class="demo-panel" style="margin-bottom:1rem">
+            <div class="demo-panel-title">
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Post a Question
+            </div>
+            <div class="demo-form">
+              <input class="demo-input" id="q-title-input" placeholder="Question title..." />
+              <select class="demo-select" id="q-subject">
+                <option value="">Select subject...</option>
+                <option>Computer Science</option>
+                <option>Mathematics</option>
+                <option>Physics</option>
+                <option>Data Structures</option>
+                <option>Algorithms</option>
+              </select>
+              <textarea class="demo-input" id="q-body-input" rows="3" placeholder="Describe your question..."></textarea>
+              <button class="demo-submit" onclick="postQuestion()">POST /api/questions</button>
+            </div>
+          </div>
+          <div class="demo-panel" id="answer-panel" style="display:none">
+            <div class="demo-panel-title">
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              Answers
+            </div>
+            <div id="answers-list"></div>
+            <div class="demo-form" style="margin-top:8px">
+              <input class="demo-input" id="ans-input" placeholder="Write an answer..." />
+              <button class="demo-submit" onclick="postAnswer()">POST /api/answers</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: API Explorer -->
+    <div id="pane-api" class="sandbox-pane">
+      <p style="font-family:var(--mono);font-size:12px;color:var(--muted);margin-bottom:1rem">
+        Simulate real Study Hub API calls. Try the endpoints below — responses are generated to mirror the actual Spring Boot REST API.
+      </p>
+      <div style="margin-bottom:1.5rem">
+        <div style="font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Quick Actions</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="vote-btn" onclick="setEndpoint('GET','/api/questions')">GET /questions</button>
+          <button class="vote-btn" onclick="setEndpoint('POST','/api/questions')">POST /questions</button>
+          <button class="vote-btn" onclick="setEndpoint('GET','/api/questions/1')">GET by ID</button>
+          <button class="vote-btn" onclick="setEndpoint('GET','/api/users/me/grades')">GET /grades</button>
+          <button class="vote-btn" onclick="setEndpoint('DELETE','/api/questions/1')">DELETE</button>
+        </div>
+      </div>
+      <div class="api-row">
+        <span id="method-display" class="method-pill">GET</span>
+        <input class="api-path" id="api-path" value="/api/questions" />
+        <button class="send-btn" onclick="callApi()">Send ↗</button>
+      </div>
+      <div style="font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:8px">Response</div>
+      <div class="response-box" id="api-response">
+        <span style="color:var(--dim)">// Hit "Send" to simulate an API call...</span>
+      </div>
+    </div>
+
+    <!-- TAB: Grade Calculator -->
+    <div id="pane-grades" class="sandbox-pane">
+      <p style="font-family:var(--mono);font-size:12px;color:var(--muted);margin-bottom:1.5rem">
+        GPA calculator — one of the features inside Study Hub. Add your subjects and see your average update live.
+      </p>
+      <div class="grade-row header">
+        <span>Subject</span><span>Mark (%)</span><span>Credits</span><span></span>
+      </div>
+      <div id="grade-rows"></div>
+      <button class="add-row-btn" onclick="addGradeRow()">+ Add Subject</button>
+      <div class="gpa-display">
+        <div>
+          <div class="gpa-num" id="gpa-num">0.0</div>
+          <div class="gpa-label">Weighted Average</div>
+        </div>
+        <div>
+          <div class="grade-letter" id="grade-letter">–</div>
+          <div class="gpa-label" style="text-align:right">Grade</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label">// 05 — contact.exe</p>
+  <h2><span class="hash">#</span>Get In Touch</h2>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <p>
+        I'm currently looking for my first full-time role as a Full Stack Developer.
+        If you're hiring, building something cool, or just want to connect — my inbox is open.
+      </p>
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/onalerona-mathe-403004323" target="_blank" class="social-link">
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          linkedin.com/in/onalerona-mathe
+        </a>
+        <a href="#" class="social-link">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          github.com/onalerona (add your handle)
+        </a>
+        <a href="mailto:your@email.com" class="social-link">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          your@email.com (add your email)
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="terminal-card">
+        <div class="terminal-header">
+          <span class="dot dot-r"></span>
+          <span class="dot dot-y"></span>
+          <span class="dot dot-g"></span>
+          <span class="terminal-filename">sendMessage.ts</span>
+        </div>
+        <div style="padding:1.25rem">
+          <div class="contact-form">
+            <div class="form-row">
+              <input class="form-input" placeholder="Name" />
+              <input class="form-input" placeholder="Email" type="email" />
+            </div>
+            <input class="form-input" placeholder="Subject" />
+            <textarea class="form-textarea" placeholder="Message..."></textarea>
+            <button class="form-submit" onclick="showToast('Message sent! I\'ll respond within 24h.')">Send Message</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Built with ❤️ by <span>Onalerona Mathe</span> · Java · Spring Boot · React · MongoDB</p>
+  <p style="margin-top:4px">© 2025 Onalerona Mathe. All rights reserved.</p>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ─── SANDBOX TAB SWITCHING ─── */
+function switchTab(id) {
+  document.querySelectorAll('.sandbox-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.sandbox-pane').forEach(p => p.classList.remove('active'));
+  event.target.closest('.sandbox-tab').classList.add('active');
+  document.getElementById('pane-' + id).classList.add('active');
+}
+
+/* ─── TOAST ─── */
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+/* ─── STUDY HUB Q&A DEMO ─── */
+let questions = [
+  { id: 1, title: "How does Big O notation work for nested loops?", subject: "Algorithms", votes: 12, answers: [
+    { text: "For nested loops, multiply the complexities. Two loops of n = O(n²). It represents the worst-case growth rate.", accepted: true }
+  ]},
+  { id: 2, title: "What's the difference between a Stack and a Queue?", subject: "Data Structures", votes: 8, answers: [
+    { text: "Stack is LIFO (last in, first out) — like plates. Queue is FIFO (first in, first out) — like a line.", accepted: false }
+  ]},
+  { id: 3, title: "Explain Spring Boot auto-configuration", subject: "Computer Science", votes: 5, answers: [] }
+];
+let selectedQ = null;
+
+function renderQuestions() {
+  const list = document.getElementById('questions-list');
+  list.innerHTML = questions.map(q => `
+    <div class="q-item ${selectedQ && selectedQ.id === q.id ? 'selected' : ''}" onclick="selectQ(${q.id})">
+      <div class="q-title">${q.title}</div>
+      <div class="q-meta">
+        <span style="color:var(--accent2)">${q.subject}</span>
+        <span>▲ ${q.votes} votes</span>
+        <span>${q.answers.length} answer${q.answers.length !== 1 ? 's' : ''}</span>
+        <button class="vote-btn ${q.voted ? 'voted' : ''}" onclick="voteQ(event,${q.id})">▲ Upvote</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function selectQ(id) {
+  selectedQ = questions.find(q => q.id === id);
+  renderQuestions();
+  const panel = document.getElementById('answer-panel');
+  panel.style.display = 'block';
+  const list = document.getElementById('answers-list');
+  if (selectedQ.answers.length === 0) {
+    list.innerHTML = '<p style="font-size:13px;color:var(--dim);padding:8px 0">No answers yet. Be the first!</p>';
+  } else {
+    list.innerHTML = selectedQ.answers.map(a => `
+      <div class="answer-box">
+        <div class="answer-text">${a.text}</div>
+        ${a.accepted ? '<span class="accepted-badge">✓ Accepted</span>' : ''}
+      </div>
+    `).join('');
+  }
+}
+
+function voteQ(e, id) {
+  e.stopPropagation();
+  const q = questions.find(q => q.id === id);
+  if (!q.voted) { q.votes++; q.voted = true; }
+  renderQuestions();
+  if (selectedQ && selectedQ.id === id) selectQ(id);
+}
+
+function postQuestion() {
+  const title = document.getElementById('q-title-input').value.trim();
+  const subject = document.getElementById('q-subject').value;
+  const body = document.getElementById('q-body-input').value.trim();
+  if (!title || !subject) { showToast('⚠ Please fill in title and subject'); return; }
+  const newQ = { id: Date.now(), title, subject, votes: 0, answers: [] };
+  questions.unshift(newQ);
+  document.getElementById('q-title-input').value = '';
+  document.getElementById('q-body-input').value = '';
+  document.getElementById('q-subject').value = '';
+  renderQuestions();
+  showToast('✓ Question posted → POST /api/questions 201');
+}
+
+function postAnswer() {
+  const ans = document.getElementById('ans-input').value.trim();
+  if (!ans || !selectedQ) return;
+  selectedQ.answers.push({ text: ans, accepted: false });
+  document.getElementById('ans-input').value = '';
+  selectQ(selectedQ.id);
+  showToast('✓ Answer posted → POST /api/answers 201');
+}
+
+renderQuestions();
+
+/* ─── API EXPLORER ─── */
+let currentMethod = 'GET';
+function setEndpoint(method, path) {
+  currentMethod = method;
+  document.getElementById('api-path').value = path;
+  const display = document.getElementById('method-display');
+  display.textContent = method;
+  display.className = 'method-pill' + (method === 'POST' ? ' post' : method === 'DELETE' ? ' delete' : '');
+}
+
+const apiResponses = {
+  'GET /api/questions': { status: 200, body: { success: true, data: [{ _id: "64f3a2b1", title: "How does Big O notation work?", subject: "Algorithms", votes: 12, answers: 1 }, { _id: "64f3a2b2", title: "Stack vs Queue difference?", subject: "Data Structures", votes: 8, answers: 1 }], count: 3 }},
+  'POST /api/questions': { status: 201, body: { success: true, message: "Question created", data: { _id: "64f3a2b9", title: "New question", createdAt: new Date().toISOString() }}},
+  'GET /api/questions/1': { status: 200, body: { _id: "64f3a2b1", title: "How does Big O notation work?", body: "Can someone explain it for nested loops?", subject: "Algorithms", votes: 12, answers: [{ text: "Multiply the complexities.", accepted: true }]}},
+  'GET /api/users/me/grades': { status: 200, body: { userId: "me", subjects: [{ name: "Algorithms", mark: 78, credits: 4 }, { name: "Data Structures", mark: 82, credits: 4 }], gpa: 80.0 }},
+  'DELETE /api/questions/1': { status: 200, body: { success: true, message: "Question deleted", deletedId: "64f3a2b1" }},
+};
+
+function callApi() {
+  const path = document.getElementById('api-path').value.trim();
+  const key = currentMethod + ' ' + path;
+  const box = document.getElementById('api-response');
+  const res = apiResponses[key] || { status: 404, body: { success: false, error: "Endpoint not found", hint: "Try: GET /api/questions" }};
+  const statusClass = res.status === 200 || res.status === 201 ? 'res-200' : res.status === 404 ? 'res-404' : 'res-400';
+  const json = JSON.stringify(res.body, null, 2)
+    .replace(/"([^"]+)":/g, '<span style="color:var(--accent2)">"$1"</span>:')
+    .replace(/: "([^"]+)"/g, ': <span style="color:var(--yellow)">"$1"</span>')
+    .replace(/: (true|false)/g, ': <span style="color:var(--accent)">$1</span>')
+    .replace(/: (\d+)/g, ': <span style="color:var(--accent3)">$1</span>');
+  box.innerHTML = `<div class="res-status ${statusClass}">HTTP ${res.status} ${res.status===200?'OK':res.status===201?'Created':res.status===404?'Not Found':'Bad Request'}</div><pre style="font-family:var(--mono);font-size:12px;line-height:1.6;white-space:pre-wrap">${json}</pre>`;
+}
+
+/* ─── GRADE CALCULATOR ─── */
+let gradeRows = [
+  { subject: 'Algorithms', mark: '78', credits: '4' },
+  { subject: 'Data Structures', mark: '85', credits: '4' },
+  { subject: 'Mathematics', mark: '72', credits: '3' },
+];
+
+function renderGradeRows() {
+  const container = document.getElementById('grade-rows');
+  container.innerHTML = gradeRows.map((r, i) => `
+    <div class="grade-row">
+      <input class="demo-input" value="${r.subject}" onchange="gradeRows[${i}].subject=this.value;calcGPA()" placeholder="Subject name" style="font-size:13px;padding:6px 10px"/>
+      <input class="demo-input" type="number" value="${r.mark}" min="0" max="100" onchange="gradeRows[${i}].mark=this.value;calcGPA()" style="font-size:13px;padding:6px 10px"/>
+      <input class="demo-input" type="number" value="${r.credits}" min="1" max="10" onchange="gradeRows[${i}].credits=this.value;calcGPA()" style="font-size:13px;padding:6px 10px"/>
+      <button class="del-btn" onclick="gradeRows.splice(${i},1);renderGradeRows();calcGPA()">✕</button>
+    </div>
+  `).join('');
+  calcGPA();
+}
+
+function addGradeRow() {
+  gradeRows.push({ subject: '', mark: '', credits: '3' });
+  renderGradeRows();
+}
+
+function calcGPA() {
+  let totalCredits = 0, totalWeighted = 0;
+  gradeRows.forEach(r => {
+    const m = parseFloat(r.mark), c = parseFloat(r.credits);
+    if (!isNaN(m) && !isNaN(c) && c > 0) {
+      totalWeighted += m * c;
+      totalCredits += c;
+    }
+  });
+  const avg = totalCredits > 0 ? totalWeighted / totalCredits : 0;
+  document.getElementById('gpa-num').textContent = avg.toFixed(1);
+  let letter = '–';
+  if (avg >= 75) letter = 'D';
+  if (avg >= 70) letter = 'C';
+  if (avg >= 60) letter = 'B';
+  if (avg >= 50) letter = 'A';
+  if (avg >= 40) letter = 'M';
+  if (avg >= 75) letter = 'D';
+  if (avg >= 80) letter = 'D+';
+  if (avg >= 90) letter = 'A+';
+  document.getElementById('grade-letter').textContent = letter;
+}
+
+renderGradeRows();
+</script>
+</body>
+</html>
