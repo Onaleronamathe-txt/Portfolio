@@ -8,6 +8,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  emailjs.init("3CnZlDmZox3LYe8kF"); 
+</script>
 <style>
   :root {
     --bg:       #0a0e14;
@@ -436,9 +440,7 @@
 <section id="contact">
   <p class="section-label">// 05 — contact.exe</p>
   <h2><span class="hash">#</span>Get In Touch</h2>
-  <div class="contact-grid"><div><p>I'm looking for a full-time Full Stack Developer role. If you're hiring or just want to connect — reach out!</p><div class="social-links"><a href="https://www.linkedin.com/in/onalerona-mathe-403004323" target="_blank" class="social-link">🔗linkedin.com/Onalerona <linkedin class="com">
-  <in>
-  <onalerona-mathe></onalerona-mathe></a><a href="https://github.com/Onaleronamathe-txt" target="_blank" class="social-link">🐙 github.com/onalerona</a><a href="mailto:onaleronamathe60@gmail.com" class="social-link">✉️ onaleronamathe60@gmail.com</a></div></div><div><div class="terminal-card"><div class="terminal-header"><span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span><span class="terminal-filename">sendMessage.ts</span></div><div style="padding:1.25rem"><div class="contact-form"><div class="form-row"><input class="form-input" placeholder="Name" /></div><input class="form-input" placeholder="Email" type="email" /><input class="form-input" placeholder="Subject" /><textarea class="form-textarea" placeholder="Message..."></textarea><button class="form-submit" onclick="showToast('Message sent! I\'ll respond within 24h.')">Send Message</button></div></div></div></div></div>
+  <div class="contact-grid"><div><p>I'm looking for a full-time Full Stack Developer role. If you're hiring or just want to connect — reach out!</p><div class="social-links"><a href="https://www.linkedin.com/in/onalerona-mathe-403004323" target="_blank" class="social-link">🔗 linkedin.com/in/onalerona-mathe</a><a href="https://github.com/Onaleronamathe-txt" target="_blank" class="social-link">🐙 github.com/onalerona</a><a href="mailto:onaleronamathe60@gmail.com" class="social-link">✉️ onaleronamathe60@gmail.com</a></div></div><div><div class="terminal-card"><div class="terminal-header"><span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span><span class="terminal-filename">sendMessage.ts</span></div><div style="padding:1.25rem"><div class="contact-form"><div class="form-row"><input class="form-input" placeholder="Name" /></div><input class="form-input" placeholder="Email" type="email" /><input class="form-input" placeholder="Subject" /><textarea class="form-textarea" placeholder="Message..."></textarea><button class="form-submit" id="send-btn" onclick="sendEmail()">Send Message</button></div></div></div></div></div>
 </section>
 <footer><p>Built with ❤️ by <span>Onalerona Mathe</span> · Java · Spring Boot · React · MongoDB</p><p>© 2025 Onalerona Mathe</p></footer>
 <div class="toast" id="toast"></div>
@@ -458,6 +460,40 @@ function addGradeRow(){ gradeRows.push({subject:'',mark:'',credits:'3'}); render
 function calcGPA(){ let total=0,cred=0; gradeRows.forEach(r=>{ let m=parseFloat(r.mark),c=parseFloat(r.credits); if(!isNaN(m)&&!isNaN(c)&&c>0){ total+=m*c; cred+=c; } }); let avg=cred>0?total/cred:0; document.getElementById('gpa-num').textContent=avg.toFixed(1); let letter='F'; if(avg>=75) letter='D'; if(avg>=70) letter='C'; if(avg>=60) letter='B'; if(avg>=75) letter='D'; if(avg>=80) letter='D+'; if(avg>=90) letter='A+'; document.getElementById('grade-letter').textContent=letter; }
 function switchTab(id){ document.querySelectorAll('.sandbox-tab').forEach(t=>t.classList.remove('active')); document.querySelectorAll('.sandbox-pane').forEach(p=>p.classList.remove('active')); event.target.closest('.sandbox-tab').classList.add('active'); document.getElementById('pane-'+id).classList.add('active'); }
 function showToast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),3000); }
+function sendEmail() {
+  const name    = document.querySelector('.form-input[placeholder="Name"]').value.trim();
+  const email   = document.querySelector('.form-input[placeholder="Email"]').value.trim();
+  const subject = document.querySelector('.form-input[placeholder="Subject"]').value.trim();
+  const message = document.querySelector('.form-textarea').value.trim();
+
+  if (!name || !email || !message) {
+    showToast('⚠ Please fill in Name, Email & Message');
+    return;
+  }
+
+  const btn = document.getElementById('send-btn');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+
+  emailjs.send("service_jpwcb5k", "template_x6ug6fi", {
+    from_name:  name,
+    name:       name,
+    from_email: email,
+    subject:    subject || 'Portfolio Contact',
+    message:    message
+  })
+  .then(() => {
+    showToast('✓ Message sent! I\'ll respond within 24h.');
+    document.querySelectorAll('.form-input, .form-textarea').forEach(el => el.value = '');
+    btn.textContent = 'Send Message';
+    btn.disabled = false;
+  })
+  .catch(() => {
+    showToast('✗ Failed — email me directly at onaleronamathe60@gmail.com');
+    btn.textContent = 'Send Message';
+    btn.disabled = false;
+  });
+}
 renderQuestions(); renderGradeRows();
 </script>
 </body>
